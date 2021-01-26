@@ -7,8 +7,8 @@
 <mat-card>
   <mat-card-content>
     <mat-list>
-      <mat-list-item *ngFor="let todo of todos$ | async" class="list-item">
-        <mat-checkbox [checked]="todo.isDone">{{todo.title}}</mat-checkbox>
+      <mat-list-item *ngFor="let todo of todoToDisplay" class="list-item">
+        <mat-checkbox [checked]="todo.isDone" (change)="onTodoChange(todo)" [ngClass]="{strike: todo.isDone}">{{todo.title}}</mat-checkbox>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

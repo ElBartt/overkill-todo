@@ -8,5 +8,5 @@ export enum TodolistActionsType {
   toggleChecked = '[Todo Component] Toggle todo check'
 }
 
-export const toggleChecked = createAction(TodolistActionsType.toggleChecked);
+export const toggleChecked = createAction(TodolistActionsType.toggleChecked, props<{payload: TodoModel}>());
 export const loadSuccess = createAction(TodolistActionsType.loadTodoListSuccess, props<{payload: readonly TodoModel[]}>());

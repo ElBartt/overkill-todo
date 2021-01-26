@@ -8,8 +8,19 @@ export const initialTodo: TodoListStateModel = {
 
 export const _todoReducer = createReducer(
   initialTodo,
-  on(toggleChecked, (state) => state),
-  on(loadSuccess, (state, { payload }) => ({ todoList: payload }))
+  on(toggleChecked, (state, { payload }) => {
+    return {
+      ...state,
+      todoList: state.todoList.map(todo => ({...todo}))
+                              .map(todo => {
+                                if (todo.title === payload.title) {
+                                  todo.isDone = !todo.isDone;
+                                }
+                                return todo;
+                              })
+    };
+  }),
+  on(loadSuccess, (_, { payload }) => ({ todoList: payload }))
 );
 
 export function todoReducer(state: TodoListStateModel | undefined, action: Action) {
